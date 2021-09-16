@@ -72,10 +72,18 @@
 ;; Because sometimes you just have to go pure Emacs
 (map! "<f6>" #'evil-mode)
 
+;; The one emacs keybinding I can't give up
+(map!
+   (:after evil
+     :m  "C-e" #'end-of-visual-line))
+
 ;; org and org roam setup
 (after! org
   (setq org-agenda-files '("~/Dropbox/org/"
-                           "~/Dropbox/org-roam/daily")))
+                           "~/Dropbox/org-roam/daily"))
+  ;Used to have lots of these, now just use TODO and DONE
+  (setq org-todo-keywords
+      '((sequence "TODO"  "|" "DONE"))))
 
 (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
 (setq org-roam-dailies-directory "daily/")
@@ -105,3 +113,6 @@
     (backup-buffer)))
 
 (add-hook 'before-save-hook  #'force-backup-of-buffer)
+
+;; Yes, I really want to quit.
+(setq confirm-kill-emacs nil)
