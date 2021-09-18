@@ -1,8 +1,5 @@
 ;;; $DOOMDIR/config.el -*- lexical-binding: t; -*-
 
-;; Place your private configuration here! Remember, you do not need to run 'doom
-;; sync' after modifying this file!
-
 
 ;; Some functionality uses this to identify you, e.g. GPG configuration, email
 ;; clients, file templates and snippets.
@@ -22,10 +19,10 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-;; There are two ways to load a theme. Both assume the theme is installed and
-;; available. You can either set `doom-theme' or manually load a theme with the
-;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;; Themes according to mood
+;(setq doom-theme 'doom-vibrant)
+;(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -35,24 +32,6 @@
 ;; numbers are disabled. For relative line numbers, set this to `relative'.
 (setq display-line-numbers-type t)
 
-
-;; Here are some additional functions/macros that could help you configure Doom:
-;;
-;; - `load!' for loading external *.el files relative to this one
-;; - `use-package!' for configuring packages
-;; - `after!' for running code after a package has loaded
-;; - `add-load-path!' for adding directories to the `load-path', relative to
-;;   this file. Emacs searches the `load-path' when you load packages with
-;;   `require' or `use-package'.
-;; - `map!' for binding new keys
-;;
-;; To get information about any of these functions/macros, move the cursor over
-;; the highlighted symbol at press 'K' (non-evil users must press 'C-c c k').
-;; This will open documentation for it, including demos of how they are used.
-;;
-;; You can also try 'gd' (or 'C-c c d') to jump to their definition and see how
-;; they are implemented.
-
 ;; Swap C and M position on MacBook
 (cond (IS-MAC
        (setq mac-command-modifier      'meta
@@ -61,8 +40,8 @@
              mac-right-option-modifier 'alt)))
 
 ;; Screen position for different machines
-;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 
 
 ;; Set the image and title
@@ -87,12 +66,20 @@
 (after! org
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org-roam/daily"))
-  ;Used to have lots of these, now just use TODO and DONE
-  (setq org-todo-keywords
-      '((sequence "TODO"  "|" "DONE"))))
 
-(setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
-(setq org-roam-dailies-directory "daily/")
+  ; Used to have lots of these, now just use TODO and DONE
+  (setq org-todo-keywords
+        '((sequence "TODO"  "|" "DONE")))
+
+  ; GTD means capturing ideas quickly. I don't want to think about where to refile
+  ; Everything captured is a TODO, to be refiled later
+  (setq org-capture-templates
+        (quote (("t" "Todo" entry (file "~/Dropbox/org/todo.org")
+                 "* TODO %?" :empty-lines 1))))
+
+  (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
+  (setq org-roam-dailies-directory "daily/"))
+
 (setq org-roam-capture-templates '(("d" "default" plain "%?" :if-new
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
   :unnarrowed t)))
