@@ -40,7 +40,7 @@
              mac-right-option-modifier 'alt)))
 
 ;; Screen position for different machines
-(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 
 
