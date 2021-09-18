@@ -25,7 +25,9 @@
 ;; There are two ways to load a theme. Both assume the theme is installed and
 ;; available. You can either set `doom-theme' or manually load a theme with the
 ;; `load-theme' function. This is the default:
-(setq doom-theme 'doom-one)
+;(setq doom-theme 'doom-vibrant)
+;(setq doom-theme 'doom-one)
+(setq doom-theme 'doom-solarized-light)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -61,8 +63,8 @@
              mac-right-option-modifier 'alt)))
 
 ;; Screen position for different machines
-;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
-(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
+(add-to-list 'initial-frame-alist '(fullscreen . maximized))
+;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 
 
 ;; Set the image and title
@@ -81,9 +83,19 @@
 (after! org
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org-roam/daily"))
-  ;Used to have lots of these, now just use TODO and DONE
+
+  ; Used to have lots of these, now just use TODO and DONE
   (setq org-todo-keywords
-      '((sequence "TODO"  "|" "DONE"))))
+        '((sequence "TODO"  "|" "DONE")))
+
+  ; GTD means capturing ideas quickly. I don't want to think about where to refile
+  ; Everything captured is a TODO, to be refiled later
+  (setq org-capture-templates
+        (quote (("t" "Todo" entry (file "~/Dropbox/org/todo.org")
+                 "* TODO %?" :empty-lines 1))))
+
+  (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
+  (setq org-roam-dailies-directory "daily/"))
 
 (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
 (setq org-roam-dailies-directory "daily/")
