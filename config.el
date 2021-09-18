@@ -77,6 +77,12 @@
    (:after evil
      :m  "C-e" #'end-of-visual-line))
 
+;; My leader mappings
+(map! :leader
+      (:prefix-map ("j" . "my mappings")
+       :desc "Kill popup window" "p" #'+popup/close))
+
+
 ;; org and org roam setup
 (after! org
   (setq org-agenda-files '("~/Dropbox/org/"
@@ -87,6 +93,9 @@
 
 (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
 (setq org-roam-dailies-directory "daily/")
+(setq org-roam-capture-templates '(("d" "default" plain "%?" :if-new
+  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
+  :unnarrowed t)))
 
 ;; Set Mouse 3 for flyspell corrections
 (after! flyspell
