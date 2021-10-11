@@ -84,6 +84,13 @@
   (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
   :unnarrowed t)))
 
+;; thanks to zzamboni.org for this: disable completion of words in org
+(defun zz/adjust-org-company-backends ()
+  (remove-hook 'after-change-major-mode-hook '+company-init-backends-h)
+  (setq-local company-backends nil))
+(add-hook! org-mode (zz/adjust-org-company-backends))
+
+
 ;; Set Mouse 3 for flyspell corrections
 (after! flyspell
   (define-key flyspell-mode-map [down-mouse-3] 'flyspell-correct-word) )
