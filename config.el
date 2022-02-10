@@ -39,10 +39,28 @@
              mac-function-modifier     'ctrl
              mac-right-option-modifier 'alt)))
 
-;; Screen position for different machines
+;; Screen size and position for different machines
 ;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
+(defun tb/set-small-screen ()
+  "Set the screen to something like regular emacs size."
+  (set-frame-size (selected-frame) 81 43))
 
+(defun tb/set-large-screen ()
+  "Set the screen to something like double regular emacs width."
+  (set-frame-size (selected-frame) 180 53))
+
+(defun tb/preferred-screen-size ()
+  "Set my preferred screen size."
+  (interactive)
+  (if (< (frame-width) 85)
+      (tb/set-large-screen)
+    (tb/set-small-screen)))
+
+(map! "<f5>" #'tb/preferred-screen-size)
+
+;; Set the initial screen size to accommodate my image
+(tb/set-small-screen)
 
 ;; Set the image and title
 (setq fancy-splash-image "~/Dropbox/emacs/img/emi.png")
