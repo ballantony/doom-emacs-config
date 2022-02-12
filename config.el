@@ -85,15 +85,15 @@
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org-roam/daily"))
 
-  ; Used to have lots of these, now just use TODO and DONE
+  ; Used to have lots of these, now just use TODO IN PROGRESS and DONE
   (setq org-todo-keywords
-        '((sequence "TODO"  "|" "DONE")))
+        '((sequence "TODO" "IN PROGRESS" "|" "DONE")))
 
   ; GTD means capturing ideas quickly. I don't want to think about where to refile
   ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
-        (quote (("t" "Todo" entry (file "~/Dropbox/org/todo.org")
-                 "* TODO %?" :empty-lines 1))))
+        (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Captured")
+                 "** TODO %?"))))
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/"))
