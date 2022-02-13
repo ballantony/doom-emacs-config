@@ -85,22 +85,44 @@
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org-roam/daily"))
 
-  ; Used to have lots of these, now just use TODO IN PROGRESS and DONE
+                                        ; Used to have lots of these, now just use TODO IN PROGRESS and DONE
   (setq org-todo-keywords
         '((sequence "TODO" "IN PROGRESS" "|" "DONE")))
 
-  ; GTD means capturing ideas quickly. I don't want to think about where to refile
-  ; Everything captured is a TODO, to be refiled later
+                                        ; GTD means capturing ideas quickly. I don't want to think about where to refile
+                                        ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
         (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Captured")
                  "** TODO %?"))))
 
-  (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
-  (setq org-roam-dailies-directory "daily/"))
+  (setq org-agenda-custom-commands
+        '(
 
-(setq org-roam-capture-templates '(("d" "default" plain "%?" :if-new
-  (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
-  :unnarrowed t)))
+          ("p" "Project Overview"
+           ((todo "TODO")
+            (todo "IN PROGRESS")
+            (todo "DONE")))
+
+
+          ("d" "Day view"
+           ((agenda "" ((org-agenda-ndays 1)
+                                        ;  (org-scheduled-past-days 5)
+                                        ;  (org-deadline-warning-days 5)
+                        ))
+            (todo "TODO" )))))
+
+  (defun tb/agenda-restrict-this-buffer ()
+    "Call projects agenda restricted to this buffer"
+    (interactive)
+    (org-agenda nil "p" "<"))
+
+  (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
+  (setq org-roam-dailies-directory "daily/")
+  (setq org-roam-capture-templates '(("d" "default" plain "%?" :if-new
+                                      (file+head "%<%Y%m%d%H%M%S>-${slug}.org" "#+title: ${title}\n#+filetags: ")
+                                      :unnarrowed t))))
+
+
 
 ;; thanks to zzamboni.org for this: disable completion of words in org
 (defun zz/adjust-org-company-backends ()
