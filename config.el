@@ -74,12 +74,6 @@
    (:after evil
      :m  "C-e" #'end-of-visual-line))
 
-;; My leader mappings
-(map! :leader
-      (:prefix-map ("j" . "my mappings")
-       :desc "Kill popup window" "p" #'+popup/close))
-
-
 ;; org and org roam setup
 (after! org
   (setq org-agenda-files '("~/Dropbox/org/"
@@ -115,6 +109,11 @@
     "Call projects agenda restricted to this buffer"
     (interactive)
     (org-agenda nil "p" "<"))
+
+  (defun tb/capture ()
+    "Capture to do without options"
+    (interactive)
+    (org-capture nil "t"))
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/")
@@ -156,6 +155,14 @@
     (backup-buffer)))
 
 (add-hook 'before-save-hook  #'force-backup-of-buffer)
+
+;; My leader mappings
+(map! :leader
+      (:prefix-map ("j" . "my mappings")
+       :desc "Capture todo without options" "c" #'tb/capture
+       :desc "Call projects agenda restricted to this buffer" "p" #'tb/agenda-restrict-this-buffer
+       :desc "Kill popup window" "w" #'+popup/close))
+
 
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
