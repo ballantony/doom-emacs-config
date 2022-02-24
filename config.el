@@ -90,19 +90,22 @@
                  "** TODO %?"))))
 
   (setq org-agenda-custom-commands
-        '(
+        '(("p" "Project Overview"
+           ((todo "TODO"
+                  ((org-agenda-overriding-header "Todo:")))
+            (todo "IN PROGRESS"
+                  ((org-agenda-overriding-header "In Progress:")))))
 
-          ("p" "Project Overview"
-           ((todo "TODO")
-            (todo "IN PROGRESS")
-            (todo "DONE")))
-
+          ("P" "Level 1 Overview"
+           ((tags-todo  "LEVEL=1+TODO=\"TODO\""
+                        ((org-agenda-overriding-header "Level 1 Todos:")))
+            (tags-todo  "LEVEL=1+TODO=\"IN PROGRESS\""
+                        ((org-agenda-overriding-header "Level 1 In Progress:")))))
 
           ("d" "Day view"
-           ((agenda "" ((org-agenda-ndays 1)
-                                        ;  (org-scheduled-past-days 5)
-                                        ;  (org-deadline-warning-days 5)
-                        ))
+           ((agenda "" ((org-agenda-span 'day)
+                        (org-scheduled-past-days 5)
+                        (org-deadline-warning-days 5)))
             (todo "TODO" )))))
 
   (defun tb/agenda-restrict-this-buffer ()
@@ -168,8 +171,10 @@
 (map! :leader
       (:prefix-map ("j" . "my mappings")
        :desc "Quick capture" "c" #'tb/capture
+       :desc "Toggle Evil" "e" #'evil-mode
        :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
        :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
+       :desc "Screen Size" "s" #'tb/preferred-screen-size
        :desc "Kill popup window" "w" #'+popup/close))
 
 
