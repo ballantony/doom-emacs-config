@@ -86,7 +86,7 @@
                                         ; GTD means capturing ideas quickly. I don't want to think about where to refile
                                         ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
-        (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/notes.org" "Captured")
+        (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/gtd.org" "Captured")
                  "** TODO %?"))))
 
   (setq org-agenda-custom-commands
@@ -110,10 +110,18 @@
     (interactive)
     (org-agenda nil "p" "<"))
 
+  (defun tb/agenda-restrict-this-project ()
+    "Restrict agenda to current project"
+    (interactive)
+    (let* ((org-agenda-files (list (projectile-project-root))))
+      (org-agenda)))
+
   (defun tb/capture ()
     "Capture to do without options"
     (interactive)
     (org-capture nil "t"))
+
+
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/")
@@ -159,8 +167,9 @@
 ;; My leader mappings
 (map! :leader
       (:prefix-map ("j" . "my mappings")
-       :desc "Capture todo without options" "c" #'tb/capture
-       :desc "Call projects agenda restricted to this buffer" "p" #'tb/agenda-restrict-this-buffer
+       :desc "Quick capture" "c" #'tb/capture
+       :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
+       :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
        :desc "Kill popup window" "w" #'+popup/close))
 
 
