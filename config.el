@@ -124,6 +124,17 @@
     (interactive)
     (org-capture nil "t"))
 
+  (defun tb/capture-to-this-buffer ()
+    "Capture note to this buffer"
+    (interactive)
+    (cond  ((not  (eq major-mode 'org-mode))
+            (message "Can't capture to non org-mode buffer"))
+           (t
+            (let* ((this-file buffer-file-name)
+                   (org-capture-templates
+                    `(("t" "Todo" entry (file+headline ,this-file "Captured")
+                       "** TODO %?"))))
+              (org-capture)))))
 
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
@@ -171,6 +182,7 @@
 (map! :leader
       (:prefix-map ("j" . "my mappings")
        :desc "Quick capture" "c" #'tb/capture
+       :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
        :desc "Toggle Evil" "e" #'evil-mode
        :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
        :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
