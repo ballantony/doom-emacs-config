@@ -116,7 +116,7 @@
   (defun tb/agenda-restrict-this-project ()
     "Restrict agenda to current project"
     (interactive)
-    (let* ((org-agenda-files (list (projectile-project-root))))
+    (let ((org-agenda-files (list (projectile-project-root))))
       (org-agenda)))
 
   (defun tb/capture ()
