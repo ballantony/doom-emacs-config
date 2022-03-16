@@ -102,11 +102,16 @@
             (tags-todo  "LEVEL=1+TODO=\"IN PROGRESS\""
                         ((org-agenda-overriding-header "Level 1 In Progress:")))))
 
-          ("d" "Day view"
-           ((agenda "" ((org-agenda-span 'day)
-                        (org-scheduled-past-days 5)
-                        (org-deadline-warning-days 5)))
-            (todo "TODO" )))))
+          ))
+
+  (setq org-agenda-category-icon-alist
+        `(("gtd" ,(list (all-the-icons-material "star")) nil nil :ascent center)
+          ("Next" ,(list (all-the-icons-material "redo")) nil nil :ascent center)
+          ("Refile" ,(list (all-the-icons-material "move_to_inbox")) nil nil :ascent center)
+          ("School" ,(list (all-the-icons-material "school")) nil nil :ascent center)
+          ("Tech" ,(list (all-the-icons-material "laptop_mac")) nil nil :ascent center)
+          ("Writing" ,(list (all-the-icons-material "edit")) nil nil :ascent center)
+          ))
 
   (defun tb/agenda-restrict-this-buffer ()
     "Call projects agenda restricted to this buffer"
