@@ -106,7 +106,8 @@
 
   (setq org-agenda-category-icon-alist
         `(("gtd" ,(list (all-the-icons-material "star")) nil nil :ascent center)
-          ("Next" ,(list (all-the-icons-material "redo")) nil nil :ascent center)
+          ("Person" ,(list (all-the-icons-material "person")) nil nil :ascent center)
+          ("Planner" ,(list (all-the-icons-faicon "calendar")) nil nil :ascent center)
           ("Refile" ,(list (all-the-icons-material "move_to_inbox")) nil nil :ascent center)
           ("School" ,(list (all-the-icons-material "school")) nil nil :ascent center)
           ("Tech" ,(list (all-the-icons-material "laptop_mac")) nil nil :ascent center)
