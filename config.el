@@ -19,6 +19,8 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
+(setq doom-font "Courier New-14")
+
 ;; Themes according to mood
 ;(setq doom-theme 'doom-vibrant)
 ;(setq doom-theme 'doom-one)
@@ -57,7 +59,23 @@
       (tb/set-large-screen)
     (tb/set-small-screen)))
 
+(defun tb/set-font-size-big ()
+  (interactive)
+  "Set font to Courier 16"
+  (setq doom-font "Courier New-16")
+  (doom/reload-font)
+  (tb/set-small-screen))
+
+(defun tb/set-font-size-small ()
+  (interactive)
+  "Set font to Courier 14"
+  (setq doom-font "Courier New-14")
+  (doom/reload-font))
+
+
 (map! "<f5>" #'tb/preferred-screen-size)
+(map! "<f7>" #'tb/set-font-size-big)
+
 
 ;; Set the initial screen size to accommodate my image
 (tb/set-small-screen)
@@ -194,8 +212,8 @@
        :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
        :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
        :desc "Screen Size" "s" #'tb/preferred-screen-size
+       :desc "Small font size" "4" #'tb/set-font-size-small
+       :desc "Large font size" "6" #'tb/set-font-size-big
        :desc "Kill popup window" "w" #'+popup/close))
-
-
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)

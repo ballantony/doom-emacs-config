@@ -1,2 +1,17 @@
-# doom-emacs-config
-My Doom Emacs Configuration
+#+Title: My Doom Emacs Configuration
+
+
+* Why Doom Emacs?
+Emacs is incredibly configurable. I can choose, for example, the shape and contents of my agenda, the completion engine I use and even such things as the colour of my Todos.
+
+And that’s a problem. Emacs allows me to configure many things that, if I’m honest, I really don’t care about.
+
+It’s very easy to fall into the Emacs trap of sending time configuring the system rather than doing any actual work. I don’t want to think about how many hours I’ve spent experimenting with new packages and thinking of the perfect key bindings when I could have been writing stories instead. GTD can be a powerful procrastinator.
+
+That’s why I’m happy to let someone else do it for me.
+
+Enter Doom Emacs. So what if the TODOs are a different colour to the ones I use, and the capture templates aren’t quite the ones I was using, they’re still good. The key bindings may be different, but they’re far more extensive than any I’ve ever set up and I could probably finish a short story in the time it would take me to replicate them (and I can always override the few I really care about: C-e for example).
+
+Most of all, Henrik Lissner, the creator of Doom Emacs, knows so much more about Emacs than I. I’ve learned so much simply tracking through his code. I wasn’t aware of Vertico until it turned up in the Doom config. I don’t have the time or inclination to try out all new Emacs packages. It’s great that someone else is doing this, and if I don’t like their choices, well, Doom is flexible enough for me to change them.
+
+One final observation. Doom Emacs is fast to load. This is important to me. I like to take notes or begin writing when inspiration strikes. I can open Doom Emacs (or Orgzly on my mobile phone) and take a note in the time it takes apps such as Evernote or Notion to load.
