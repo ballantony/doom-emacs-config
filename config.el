@@ -87,10 +87,18 @@
 ;; Because sometimes you just have to go pure Emacs
 (map! "<f6>" #'evil-mode)
 
-;; The one emacs keybinding I can't give up
+;; The +one+ two emacs keybindings I can't give up
 (map!
    (:after evil
      :m  "C-e" #'end-of-visual-line))
+
+;; Lissner has rebound C-x C-s in insert mode to yasnippet.
+;; I've tried, but C-x C-s to save is too deep in muscle memory.
+;; The following unbinds the key in insert mode, so it can fall back to the
+;; underlying default, which is to save the buffer.
+;; I've then added yasnippet to a new binding
+(map! :i "C-x C-s" nil)
+(map! "C-x C-y" #'company-yasnippet)
 
 ;; org and org roam setup
 (after! org
