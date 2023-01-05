@@ -211,6 +211,21 @@
 
 (add-hook 'before-save-hook  #'force-backup-of-buffer)
 
+;; Display whitespace characters
+;; adapted from a solution by adamroyjones
+;; https://github.com/doomemacs/doomemacs/issues/2673
+(use-package! whitespace
+  :config
+  (setq
+    whitespace-style '(face tabs tab-mark spaces space-mark trailing newline newline-mark)
+    whitespace-display-mappings '(
+      (space-mark   ?\     [?\u00B7]     [?.])
+      (space-mark   ?\xA0  [?\u00A4]     [?_])
+      (newline-mark ?\n    [182 ?\n])
+      (tab-mark     ?\t    [?\u00BB ?\t] [?\\ ?\t])))
+  (global-whitespace-mode +1))
+
+
 ;; My leader mappings
 (map! :leader
       (:prefix-map ("j" . "my mappings")
