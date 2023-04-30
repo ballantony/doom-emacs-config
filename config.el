@@ -105,9 +105,9 @@
   (setq org-agenda-files '("~/Dropbox/org/"
                            "~/Dropbox/org-roam/daily"))
 
- ; Used to have lots of these, now just use TODO IN PROGRESS and DONE
+ ; Used to have lots of these, now just use TODO NEXT and DONE
   (setq org-todo-keywords
-        '((sequence "TODO" "IN PROGRESS" "|" "DONE")))
+        '((sequence "TODO" "NEXT" "|" "DONE")))
 
  ; GTD means capturing ideas quickly. I don't want to think about where to refile
  ; Everything captured is a TODO, to be refiled later
@@ -116,29 +116,30 @@
                  "** TODO %?"))))
 
   (setq org-agenda-custom-commands
-        '(("p" "Project Overview"
-           ((todo "TODO"
-                  ((org-agenda-overriding-header "Todo:")))
-            (todo "IN PROGRESS"
-                  ((org-agenda-overriding-header "In Progress:")))))
-
-          ("P" "Level 1 Overview"
-           ((tags-todo  "LEVEL=1+TODO=\"TODO\""
+        '(("1" "Level 1 Overview"
+           ((tags-todo  "LEVEL=1+TODO=\"NEXT\""
+                        ((org-agenda-overriding-header "Level 1 Next:")))
+            (tags-todo  "LEVEL=1+TODO=\"TODO\""
                         ((org-agenda-overriding-header "Level 1 Todos:")))
-            (tags-todo  "LEVEL=1+TODO=\"IN PROGRESS\""
-                        ((org-agenda-overriding-header "Level 1 In Progress:")))))
+            ))
 
-          ))
+	  ("2" "Level 2 Overview"
+           ((tags-todo  "LEVEL=2+TODO=\"NEXT\""
+                        ((org-agenda-overriding-header "Level 2 Next:")))
+            (tags-todo  "LEVEL=2+TODO=\"TODO\""
+                        ((org-agenda-overriding-header "Level 2 Todos:")))
+            ))))
 
-  (setq org-agenda-category-icon-alist
-        `(("gtd" ,(list (all-the-icons-material "star")) nil nil :ascent center)
-          ("Person" ,(list (all-the-icons-material "person")) nil nil :ascent center)
-          ("Planner" ,(list (all-the-icons-faicon "calendar")) nil nil :ascent center)
-          ("Refile" ,(list (all-the-icons-material "move_to_inbox")) nil nil :ascent center)
-          ("School" ,(list (all-the-icons-material "school")) nil nil :ascent center)
-          ("Tech" ,(list (all-the-icons-material "laptop_mac")) nil nil :ascent center)
-          ("Writing" ,(list (all-the-icons-material "edit")) nil nil :ascent center)
-          ))
+  ;; Not sure I like these
+  ;; (setq org-agenda-category-icon-alist
+  ;;       `(("gtd" ,(list (all-the-icons-material "star")) nil nil :ascent center)
+  ;;         ("Person" ,(list (all-the-icons-material "person")) nil nil :ascent center)
+  ;;         ("Planner" ,(list (all-the-icons-faicon "calendar")) nil nil :ascent center)
+  ;;         ("Refile" ,(list (all-the-icons-material "move_to_inbox")) nil nil :ascent center)
+  ;;         ("School" ,(list (all-the-icons-material "school")) nil nil :ascent center)
+  ;;         ("Tech" ,(list (all-the-icons-material "laptop_mac")) nil nil :ascent center)
+  ;;         ("Writing" ,(list (all-the-icons-material "edit")) nil nil :ascent center)
+  ;;         ))
 
   (defun tb/agenda-restrict-this-buffer ()
     "Call projects agenda restricted to this buffer"
@@ -240,3 +241,13 @@
        :desc "Kill popup window" "w" #'+popup/close))
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
+
+(defun tb/clean-up()
+  (interactive)
+  (whitespace-mode)
+  (goto-char (point-min))
+  (flush-lines "^\\s-+$")
+  (goto-char (point-min))
+;; get rid of extra spaces after bullet  point
+  (while (re-search-forward "-   " nil t)
+    (replace-match "- ")))
