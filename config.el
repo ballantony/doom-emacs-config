@@ -66,6 +66,14 @@
   (doom/reload-font)
   (tb/set-small-screen))
 
+(defun tb/set-font-ia-writer ()
+  (interactive)
+  "Set font to be like iA Writer"
+  (setq doom-font "iA Writer Quattro V-16")
+  (doom/reload-font)
+  (tb/set-small-screen))
+
+
 (defun tb/set-font-size-small ()
   (interactive)
   "Set font to Courier 14"
@@ -78,7 +86,10 @@
 
 
 ;; Set the initial screen size to accommodate my image
-(tb/set-small-screen)
+;(tb/set-small-screen)
+(tb/set-font-size-big)
+;; Experiment with iA Writer font
+;(tb/set-font-ia-writer)
 
 ;; Set the image and title
 (setq fancy-splash-image "~/Dropbox/emacs/img/emi.png")
@@ -238,9 +249,19 @@
        :desc "Screen Size" "s" #'tb/preferred-screen-size
        :desc "Small font size" "4" #'tb/set-font-size-small
        :desc "Large font size" "6" #'tb/set-font-size-big
+       :desc "iA Writer" "i" #'tb/set-font-ia-writer
        :desc "Kill popup window" "w" #'+popup/close))
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
+
+
+(defun tb/leaving-countdown ()
+  "Counts down to leaving date"
+  (interactive)
+    (let ((leaving-date (encode-time (parse-time-string "19 Jul 2025 13:10:00" ))))
+    (setq diff (time-subtract leaving-date (current-time)))
+    (print(format-seconds "%D %H %M %S" diff))))
+
 
 (defun tb/clean-up()
   (interactive)
