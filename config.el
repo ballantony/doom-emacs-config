@@ -66,6 +66,9 @@
   (doom/reload-font)
   (tb/set-small-screen))
 
+
+;; iA Writer Mono for Splash Screen
+;; Some prefer Duo to Quattro
 (defun tb/set-font-ia-writer ()
   (interactive)
   "Set font to be like iA Writer"
