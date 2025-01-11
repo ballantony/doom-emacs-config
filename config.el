@@ -72,10 +72,11 @@
 (defun tb/set-font-ia-writer ()
   (interactive)
   "Set font to be like iA Writer"
-  (setq doom-font "iA Writer Quattro V-16")
+  (setq doom-font "iA Writer Quattro V-20")
   (doom/reload-font)
-  (tb/set-small-screen))
-
+  (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
+  (set-window-margins nil 24 24)
+  (set-frame-size (selected-frame) 120 53))
 
 (defun tb/set-font-size-small ()
   (interactive)
@@ -257,6 +258,11 @@
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
 
+;; Key Chord Mappings
+;;
+(require 'key-chord)
+(key-chord-mode t)
+; (key-chord-define-global "jj" 'evil-normal-state)
 
 (defun tb/leaving-countdown ()
   "Counts down to leaving date"
