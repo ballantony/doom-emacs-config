@@ -41,33 +41,33 @@
              mac-function-modifier     'ctrl
              mac-right-option-modifier 'alt)))
 
-;; Screen size and position for different machines
+;; Frame size and position for different machines
 ;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
-(defun tb/set-small-screen ()
-  "Set the screen to something like regular emacs size."
+(defun tb/set-small-frame ()
+  "Set the frame to something like regular emacs size."
   (set-frame-size (selected-frame) 81 43))
 
-(defun tb/set-large-screen ()
-  "Set the screen to something like double regular emacs width."
-  (set-frame-size (selected-frame) 180 53))
+(defun tb/set-large-frame ()
+  "Set the frame to something like double regular emacs width."
+  (set-frame-size (selected-frame) 145 53))
 
-(defun tb/preferred-screen-size ()
-  "Set my preferred screen size."
+(defun tb/toggle-frame-size ()
+  "Set my preferred frame size."
   (interactive)
   (if (< (frame-width) 85)
-      (tb/set-large-screen)
-    (tb/set-small-screen)))
+      (tb/set-large-frame)
+    (tb/set-small-frame)))
 
 (defun tb/set-font-size-big ()
   (interactive)
   "Set font to Courier 16"
   (setq doom-font "Courier New-16")
   (doom/reload-font)
-  (tb/set-small-screen))
+  (tb/set-small-frame))
 
 
-;; iA Writer Mono for Splash Screen
+;; iA Writer Mono for Splash Frame
 ;; Some prefer Duo to Quattro
 (defun tb/set-font-ia-writer ()
   (interactive)
@@ -76,7 +76,8 @@
   (doom/reload-font)
   (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
   (set-window-margins nil 24 24)
-  (set-frame-size (selected-frame) 120 53))
+  (set-frame-position nil 4 0)
+  (set-frame-size (selected-frame) 124 53))
 
 (defun tb/set-font-size-small ()
   (interactive)
@@ -85,12 +86,12 @@
   (doom/reload-font))
 
 
-(map! "<f5>" #'tb/preferred-screen-size)
+(map! "<f5>" #'tb/toggle-frame-size)
 (map! "<f7>" #'tb/set-font-size-big)
 
 
-;; Set the initial screen size to accommodate my image
-;(tb/set-small-screen)
+;; Set the initial frame size to accommodate my image
+;(tb/set-small-frame)
 (tb/set-font-size-big)
 ;; Experiment with iA Writer font
 ;(tb/set-font-ia-writer)
@@ -246,11 +247,12 @@
 (map! :leader
       (:prefix-map ("j" . "my mappings")
        :desc "Quick capture" "c" #'tb/capture
+       :desc "Indent sexp" "q" #'indent-sexp
        :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
        :desc "Toggle Evil" "e" #'evil-mode
        :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
        :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
-       :desc "Screen Size" "s" #'tb/preferred-screen-size
+       :desc "Frame Size" "t" #'tb/toggle-frame-size
        :desc "Small font size" "4" #'tb/set-font-size-small
        :desc "Large font size" "6" #'tb/set-font-size-big
        :desc "iA Writer" "i" #'tb/set-font-ia-writer
