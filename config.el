@@ -46,7 +46,7 @@
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 (defun tb/set-small-frame ()
   "Set the frame to something like regular emacs size."
-  (set-frame-size (selected-frame) 81 43))
+  (set-frame-size (selected-frame) 81 41))
 
 (defun tb/set-large-frame ()
   "Set the frame to something like double regular emacs width."
@@ -85,14 +85,30 @@
   (setq doom-font "Courier New-14")
   (doom/reload-font))
 
+(defun tb/centre-frame(&optional axis)
+  (interactive)
+  "Centers frame on screen.
+   AXIS 2 centers vertically
+   AXIS 3 centers horizontally"
+  (let ((dx (display-pixel-width))
+        (dy (display-pixel-height))
+        (fx (frame-outer-width))
+        (fy (frame-outer-height))
+        (cx (car (frame-position)))
+        (cy (cdr (frame-position))))
+
+    (or axis (setq axis 1))
+    (cond
+     ((= axis 2) (set-frame-position nil cx (/ (- dy fy) 2)))
+     ((= axis 3) (set-frame-position nil (/ (- dx fx) 2) cy))
+     (t (set-frame-position nil (/ (- dx fx) 2) (/ (- dy fy) 2))))))
 
 
-
-;; Set the initial frame size to accommodate my image
+;; Set the initial frame size and postion
 ;(tb/set-small-frame)
 (tb/set-font-size-big)
-;; Experiment with iA Writer font
-;(tb/set-font-ia-writer)
+(tb/centre-frame)
+
 
 ;; Set the image and title
 (setq fancy-splash-image "~/Dropbox/emacs/img/emi.png")
