@@ -46,11 +46,13 @@
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 (defun tb/set-small-frame ()
   "Set the frame to something like regular emacs size."
-  (set-frame-size (selected-frame) 81 41))
+  (set-frame-size (selected-frame) 81 41)
+  (tb/centre-frame))
 
 (defun tb/set-large-frame ()
   "Set the frame to something like double regular emacs width."
-  (set-frame-size (selected-frame) 145 53))
+  (set-frame-size (selected-frame) 145 42)
+  (tb/centre-frame))
 
 (defun tb/toggle-frame-size ()
   "Toggle frame size."
@@ -260,17 +262,17 @@
 ;; My leader mappings
 (map! :leader
       (:prefix-map ("j" . "my mappings")
-       :desc "Quick capture" "c" #'tb/capture
-       :desc "Indent sexp" "q" #'indent-sexp
-       :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
-       :desc "Toggle Evil" "e" #'evil-mode
-       :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
-       :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
-       :desc "Frame Size" "t" #'tb/toggle-frame-size
        :desc "Small font size" "4" #'tb/set-font-size-small
        :desc "Large font size" "6" #'tb/set-font-size-big
-       :desc "Toggle frame size" "t" #'tb/toggle-frame-size
+       :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
+       :desc "Quick capture" "c" #'tb/capture
+       :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
+       :desc "Dirvish" "d" #'dirvish
+       :desc "Toggle Evil" "e" #'evil-mode
        :desc "iA Writer" "i" #'tb/set-font-ia-writer
+       :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
+       :desc "Indent sexp" "q" #'indent-sexp
+       :desc "Toggle frame size" "t" #'tb/toggle-frame-size
        :desc "Kill popup window" "w" #'+popup/close))
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
