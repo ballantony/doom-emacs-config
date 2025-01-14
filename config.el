@@ -260,11 +260,6 @@
 ;; Yes, I really want to quit.
 (setq confirm-kill-emacs nil)
 
-;; Key Chord Mappings
-;;
-(require 'key-chord)
-(key-chord-mode t)
-; (key-chord-define-global "jj" 'evil-normal-state)
 
 (defun tb/leaving-countdown ()
   "Counts down to leaving date"
