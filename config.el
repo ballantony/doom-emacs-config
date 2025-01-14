@@ -19,7 +19,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font "Courier New-14")
+(setq doom-font "Courier New-16")
 
 ;; Themes according to mood
 ;(setq doom-theme 'doom-vibrant)
@@ -53,7 +53,7 @@
   (set-frame-size (selected-frame) 145 53))
 
 (defun tb/toggle-frame-size ()
-  "Set my preferred frame size."
+  "Toggle frame size."
   (interactive)
   (if (< (frame-width) 85)
       (tb/set-large-frame)
@@ -86,8 +86,6 @@
   (doom/reload-font))
 
 
-(map! "<f5>" #'tb/toggle-frame-size)
-(map! "<f7>" #'tb/set-font-size-big)
 
 
 ;; Set the initial frame size to accommodate my image
@@ -255,6 +253,7 @@
        :desc "Frame Size" "t" #'tb/toggle-frame-size
        :desc "Small font size" "4" #'tb/set-font-size-small
        :desc "Large font size" "6" #'tb/set-font-size-big
+       :desc "Toggle frame size" "t" #'tb/toggle-frame-size
        :desc "iA Writer" "i" #'tb/set-font-ia-writer
        :desc "Kill popup window" "w" #'+popup/close))
 ;; Yes, I really want to quit.
