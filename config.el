@@ -39,7 +39,10 @@
        (setq mac-command-modifier      'meta
              mac-option-modifier       'alt
              mac-function-modifier     'ctrl
-             mac-right-option-modifier 'alt)))
+             mac-right-option-modifier 'alt
+
+             ;; following defaults to linux command switch --ignore-case. Fix for MacOs
+             consult-locate-args       '"locate -i")))
 
 ;; Frame size and position for different machines
 ;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
