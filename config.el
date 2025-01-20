@@ -67,6 +67,8 @@
 (defun tb/set-font-size-big ()
   (interactive)
   "Set font to Courier 16"
+  (setq line-spacing nil)
+  (set-window-margins nil 0 0)
   (setq doom-font "Courier New-16")
   (doom/reload-font)
   (tb/set-small-frame))
@@ -78,11 +80,11 @@
   (interactive)
   "Set font to be like iA Writer"
   (setq doom-font "iA Writer Quattro V-20")
-  (doom/reload-font)
   (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
+  (doom/reload-font)
   (set-window-margins nil 24 24)
-  (set-frame-position nil 4 0)
-  (set-frame-size (selected-frame) 124 53))
+  (set-frame-size (selected-frame) 124 30)
+  (tb/centre-frame))
 
 (defun tb/set-font-size-small ()
   (interactive)
