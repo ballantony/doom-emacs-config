@@ -179,9 +179,9 @@
   ;;         ))
 
   (defun tb/agenda-restrict-this-buffer ()
-    "Call projects agenda restricted to this buffer"
+    "Call agenda restricted to this buffer"
     (interactive)
-    (org-agenda nil "p" "<"))
+    (org-agenda nil "t" "<"))
 
   (defun tb/agenda-restrict-this-project ()
     "Restrict agenda to current project"
@@ -207,6 +207,7 @@
               (org-capture)))))
 
   (setq org-startup-folded t)
+  (setq org-agenda-show-all-dates 'nil)
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/")
