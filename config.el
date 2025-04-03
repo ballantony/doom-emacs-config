@@ -208,6 +208,7 @@
 
   (setq org-startup-folded t)
   (setq org-agenda-show-all-dates 'nil)
+  (setq org-archive-location "~/Dropbox/org/archive.org::")
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/")
