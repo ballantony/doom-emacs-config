@@ -302,3 +302,7 @@
 ;; get rid of extra spaces after bullet  point
   (while (re-search-forward "-   " nil t)
     (replace-match "- ")))
+
+;; Used to be in doom emacs by default
+(after! evil-escape
+  (setq evil-escape-key-sequence "jk"))
