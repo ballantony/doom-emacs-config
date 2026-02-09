@@ -150,7 +150,6 @@
  ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
         (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/gtd.org" "Captured")
-
                  "** TODO %?"))))
 
   ; Sub todos aren't shown
@@ -212,7 +211,8 @@
 
   (setq org-startup-folded t)
   (setq org-agenda-show-all-dates 'nil)
-  (setq org-archive-location "~/Dropbox/org/archive.org::")
+  (setq org-agenda-todo-ignore-scheduled 'all) 
+  (setq org-archive-location "~/Dropbox/projects/archive.org::* From %s")
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
   (setq org-roam-dailies-directory "daily/")
