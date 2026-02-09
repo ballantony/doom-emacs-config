@@ -150,7 +150,11 @@
  ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
         (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/gtd.org" "Captured")
+
                  "** TODO %?"))))
+
+  ; Sub todos aren't shown
+  ; (setq org-agenda-todo-list-sublevels 'nil)
 
   (setq org-agenda-custom-commands
         '(("1" "Level 1 Overview"
