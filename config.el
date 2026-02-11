@@ -49,12 +49,12 @@
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 (defun tb/set-small-frame ()
   "Set the frame to something like regular emacs size."
-  (set-frame-size (selected-frame) 81 41)
+  (set-frame-size (selected-frame) 81 51)
   (tb/centre-frame))
 
 (defun tb/set-large-frame ()
   "Set the frame to something like double regular emacs width."
-  (set-frame-size (selected-frame) 145 42)
+  (set-frame-size (selected-frame) 145 69)
   (tb/centre-frame))
 
 (defun tb/toggle-frame-size ()
