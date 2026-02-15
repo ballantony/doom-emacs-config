@@ -54,7 +54,7 @@
 
 (defun tb/set-large-frame ()
   "Set the frame to something like double regular emacs width."
-  (set-frame-size (selected-frame) 145 69)
+  (set-frame-size (selected-frame) 145 60)
   (tb/centre-frame))
 
 (defun tb/toggle-frame-size ()
@@ -310,3 +310,5 @@
 ;; Used to be in doom emacs by default
 (after! evil-escape
   (setq evil-escape-key-sequence "jk"))
+
+
