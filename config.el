@@ -149,8 +149,8 @@
  ; GTD means capturing ideas quickly. I don't want to think about where to refile
  ; Everything captured is a TODO, to be refiled later
   (setq org-capture-templates
-        (quote (("t" "Todo" entry (file+headline "~/Dropbox/org/gtd.org" "Captured")
-                 "** TODO %?"))))
+        (quote (("t" "Todo" entry (file "~/Dropbox/org/inbox.org")
+                 "* TODO %?"))))
 
   ; Sub todos aren't shown
   ; (setq org-agenda-todo-list-sublevels 'nil)
