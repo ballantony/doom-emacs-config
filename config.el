@@ -104,6 +104,8 @@
         (cx (car (frame-position)))
         (cy (cdr (frame-position))))
 
+    (if (> dx 4000) (setq dx 3360)) ; multimonitor set up
+
     (or axis (setq axis 1))
     (cond
      ((= axis 2) (set-frame-position nil cx (/ (- dy fy) 2)))
