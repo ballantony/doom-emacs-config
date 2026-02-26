@@ -25,9 +25,16 @@
 
 
 ;; Themes according to mood
-;(setq doom-theme 'doom-vibrant)
-;(setq doom-theme 'doom-one)
 (setq doom-theme 'doom-solarized-light)
+;(setq doom-theme 'doom-winter-is-coming-light)
+;(setq doom-theme 'doom-plain)
+;(setq doom-theme 'doom-opera-light)
+;(setq doom-theme 'modus-operandi)
+;(setq doom-theme 'modus-operandi-tinted )
+;(setq doom-theme 'doom-ayu-light)
+;(setq doom-theme 'doom-oksolar-light)
+;(setq doom-theme 'doom-earl-grey)
+;(setq doom-theme 'doom-flat-white)
 
 ;; If you use `org' and don't want your org files in the default location below,
 ;; change `org-directory'. It must be set before org loads!
@@ -83,8 +90,7 @@
   "Reset frame size"
   (setq line-spacing nil)
   (set-window-margins nil 0 0)
-  ;(setq doom-font "Courier New-20")
-  (doom/reload-font))
+  (doom-big-font-mode -1))
 
 
 ;; iA Writer Mono for Splash Frame
@@ -94,9 +100,9 @@
   "Set frame to be like iA Writer"
   ;(setq doom-font "iA Writer Quattro V-20")
   (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
-  (doom/reload-font)
+  (doom-big-font-mode 1)
   (set-window-margins nil 24 24)
-  (set-frame-size (selected-frame) 124 30)
+  (set-frame-size (selected-frame) 124 50)
   (tb/centre-frame))
 
 
