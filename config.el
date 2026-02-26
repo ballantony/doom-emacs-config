@@ -19,7 +19,10 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font "Courier New-20")
+
+;(setq doom-font "Courier New-16")
+; Now set in cond below according to OS
+
 
 ;; Themes according to mood
 ;(setq doom-theme 'doom-vibrant)
@@ -42,7 +45,18 @@
              mac-right-option-modifier 'alt
 
              ;; following defaults to linux command switch --ignore-case. Fix for MacOs
-             consult-locate-args       '"locate -i")))
+             consult-locate-args       '"locate -i"
+
+             doom-font "Courier New-20"))
+      (IS-WINDOWS
+             ;; If this is set, then I've been taken.
+             ;; Send for help
+             ;; Now that I've retired have no intention of using MSs
+             ;; AI ridden slop ever again.
+       )
+      ( t (setq doom-font "Courier New-16")))
+
+(doom/reload-font)
 
 ;; Frame size and position for different machines
 ;(add-to-list 'initial-frame-alist '(fullscreen . maximized))
@@ -64,33 +78,27 @@
       (tb/set-large-frame)
     (tb/set-small-frame)))
 
-(defun tb/set-font-size-big ()
+(defun tb/reset-frame-font ()
   (interactive)
-  "Set font to Courier 20"
+  "Reset frame size"
   (setq line-spacing nil)
   (set-window-margins nil 0 0)
-  (setq doom-font "Courier New-20")
-  (doom/reload-font)
-  (tb/set-small-frame))
+  ;(setq doom-font "Courier New-20")
+  (doom/reload-font))
 
 
 ;; iA Writer Mono for Splash Frame
 ;; Some prefer Duo to Quattro
 (defun tb/set-font-ia-writer ()
   (interactive)
-  "Set font to be like iA Writer"
-  (setq doom-font "iA Writer Quattro V-20")
+  "Set frame to be like iA Writer"
+  ;(setq doom-font "iA Writer Quattro V-20")
   (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
   (doom/reload-font)
-  ;(set-window-margins nil 24 24)
+  (set-window-margins nil 24 24)
   (set-frame-size (selected-frame) 124 30)
   (tb/centre-frame))
 
-(defun tb/set-font-size-small ()
-  (interactive)
-  "Set font to Courier 16"
-  (setq doom-font "Courier New-16")
-  (doom/reload-font))
 
 (defun tb/centre-frame(&optional axis)
   (interactive)
@@ -114,8 +122,8 @@
 
 
 ;; Set the initial frame size and postion
-;(tb/set-small-frame)
-(tb/set-font-size-big)
+(tb/set-small-frame)
+;(tb/reset-frame-font)
 (tb/centre-frame)
 
 
@@ -213,7 +221,7 @@
 
   (setq org-startup-folded t)
   (setq org-agenda-show-all-dates 'nil)
-  (setq org-agenda-todo-ignore-scheduled 'all) 
+  (setq org-agenda-todo-ignore-scheduled 'all)
   (setq org-archive-location "~/Dropbox/projects/archive.org::* From %s")
 
   (setq org-roam-directory (file-truename "~/Dropbox/org-roam"))
@@ -275,8 +283,7 @@
 ;; My leader mappings
 (map! :leader
       (:prefix-map ("j" . "my mappings")
-       :desc "Small font size" "4" #'tb/set-font-size-small
-       :desc "Large font size" "6" #'tb/set-font-size-big
+       :desc "Reset frame font" "6" #'tb/reset-frame-font
        :desc "Buffer agenda" "b" #'tb/agenda-restrict-this-buffer
        :desc "Quick capture" "c" #'tb/capture
        :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
@@ -312,5 +319,3 @@
 ;; Used to be in doom emacs by default
 (after! evil-escape
   (setq evil-escape-key-sequence "jk"))
-
-
