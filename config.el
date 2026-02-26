@@ -19,7 +19,7 @@
 ;; (setq doom-font (font-spec :family "monospace" :size 12 :weight 'semi-light)
 ;;       doom-variable-pitch-font (font-spec :family "sans" :size 13))
 
-(setq doom-font "Courier New-16")
+(setq doom-font "Courier New-20")
 
 ;; Themes according to mood
 ;(setq doom-theme 'doom-vibrant)
@@ -66,10 +66,10 @@
 
 (defun tb/set-font-size-big ()
   (interactive)
-  "Set font to Courier 16"
+  "Set font to Courier 20"
   (setq line-spacing nil)
   (set-window-margins nil 0 0)
-  (setq doom-font "Courier New-16")
+  (setq doom-font "Courier New-20")
   (doom/reload-font)
   (tb/set-small-frame))
 
@@ -82,14 +82,14 @@
   (setq doom-font "iA Writer Quattro V-20")
   (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
   (doom/reload-font)
-  (set-window-margins nil 24 24)
+  ;(set-window-margins nil 24 24)
   (set-frame-size (selected-frame) 124 30)
   (tb/centre-frame))
 
 (defun tb/set-font-size-small ()
   (interactive)
-  "Set font to Courier 14"
-  (setq doom-font "Courier New-14")
+  "Set font to Courier 16"
+  (setq doom-font "Courier New-16")
   (doom/reload-font))
 
 (defun tb/centre-frame(&optional axis)
