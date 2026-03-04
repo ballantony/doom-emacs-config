@@ -70,12 +70,14 @@
 ;(setq initial-frame-alist '((top . 450) (left . 1900) (width . 183) (height . 55)))
 (defun tb/set-small-frame ()
   "Set the frame to something like regular emacs size."
-  (set-frame-size (selected-frame) 81 51)
+  ;set-frame-size doesn't honor WIDTH and HEIGHT that aren't exact
+  ;multiples of frame sizes. Hence fiddles below
+  (set-frame-size (selected-frame) 80 49)
   (tb/centre-frame))
 
 (defun tb/set-large-frame ()
   "Set the frame to something like double regular emacs width."
-  (set-frame-size (selected-frame) 145 60)
+  (set-frame-size (selected-frame) 125 49)
   (tb/centre-frame))
 
 (defun tb/toggle-frame-size ()
@@ -127,6 +129,7 @@
      (t (set-frame-position nil (/ (- dx fx) 2) (/ (- dy fy) 2))))))
 
 
+(setq! line-spacing 0.3) ; float gives line spacing, int gives pixels
 ;; Set the initial frame size and postion
 (tb/set-small-frame)
 ;(tb/reset-frame-font)
@@ -325,3 +328,7 @@
 ;; Used to be in doom emacs by default
 (after! evil-escape
   (setq evil-escape-key-sequence "jk"))
+
+
+;; Experiment
+
