@@ -94,20 +94,6 @@
   (set-window-margins nil 0 0)
   (doom-big-font-mode -1))
 
-
-;; iA Writer Mono for Splash Frame
-;; Some prefer Duo to Quattro
-(defun tb/set-font-ia-writer ()
-  (interactive)
-  "Set frame to be like iA Writer"
-  ;(setq doom-font "iA Writer Quattro V-20")
-  (setq line-spacing 0.3) ; float gives line spacing, int gives pixels
-  (doom-big-font-mode 1)
-  (set-window-margins nil 24 24)
-  (set-frame-size (selected-frame) 124 50)
-  (tb/centre-frame))
-
-
 (defun tb/centre-frame(&optional axis)
   (interactive)
   "Centers frame on screen.
@@ -298,7 +284,6 @@
        :desc "Capture this buffer" "C" #'tb/capture-to-this-buffer
        :desc "Dirvish" "d" #'dirvish
        :desc "Toggle Evil" "e" #'evil-mode
-       :desc "iA Writer" "i" #'tb/set-font-ia-writer
        :desc "Project agenda" "p" #'tb/agenda-restrict-this-project
        :desc "Indent sexp" "q" #'indent-sexp
        :desc "Toggle frame size" "t" #'tb/toggle-frame-size
